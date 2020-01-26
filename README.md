@@ -1,4 +1,4 @@
-# nfindocker-sample
+# Python scheduler app
 
 Running locally via docker-compose
 ---
