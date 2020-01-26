@@ -1,0 +1,28 @@
+version: '2.1'
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_DATABASE=nfindocker
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "0.0.0.0:25006:3306"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 3s
+      retries: 20
+  nfindocker:
+    build: .
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=
+      - DB_DATABASE=nfindocker
+      - DB_TABLE=data
+    command: --initialize-table-recreate --url=https://raw.githubusercontent.com/jpatokal/openflights/master/data/airlines.dat
+    depends_on:
+      mysql:
+        condition: service_healthy
