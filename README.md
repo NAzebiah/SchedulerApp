@@ -1,4 +1,4 @@
-# nfindocker-sample
+# Python scheduler app
 
 This app inspects the data file here https://raw.githubusercontent.com/jpatokal/openflights/master/data/airlines.dat and loops through each record, checking for duplicates before adding them to the database. 
 
