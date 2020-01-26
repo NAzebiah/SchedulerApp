@@ -1,10 +1,12 @@
 # nfindocker-sample
 
+This app inspects the data file here https://raw.githubusercontent.com/jpatokal/openflights/master/data/airlines.dat and loops through each record, checking for duplicates before adding them to the database. 
+
 Running locally via docker-compose
 ---
 
 1. Run `docker-compose up -d`
-2. Each time you want to try running the script, invoke `docker-compose up --build nfindocker`.
+2. Each time you want to try running the script, invoke `docker-compose up --build nfindocker`
 
 Upon each invocation, the table will be recreated. You can change that by modifying `docker-compose.yml`'s
 `command` section for `nfindocker` service - change `--initialize-table-recreate` to `--initialize-table`.
